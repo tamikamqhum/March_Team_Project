@@ -9,7 +9,7 @@ This project explores pollution levels across The United Stes from 2000-2016, an
 
 * **Pollution Data:** [Kaggle-Pollution Dataset](https://www.kaggle.com/datasets/sogun3/uspollution) 
 * **Weather Data:** [Nation Centers for Envornmental Information](<https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_year/>)
-* Filed from NCEI: 
+* Files from NCEI: 
    -  `ghcnd-countries.txt` (Countrycodes)
    -  `ghcnd-states.txt` (Statecodes)
    -  `ghcnd-stations.txt` (Station codes)
