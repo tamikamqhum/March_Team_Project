@@ -6,7 +6,14 @@
 
 
 ## Dataset Content
-* Describe your dataset. Choose a dataset of reasonable size to avoid exceeding the repository's maximum size of 100Gb.
+
+* The Data on Pollution reading came from Haggle =
+* The Data on weather came from <https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_year/>
+* filed from NCEI
+    Single file per year
+    ghcnd-countries.txt = countrycodes
+    ghcnd-states.txt = statecodes
+    ghcnd-stations.txt = station codes
 
 
 ## Business Requirements
