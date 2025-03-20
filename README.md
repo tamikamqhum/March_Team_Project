@@ -34,6 +34,20 @@ This project explores pollution levels across The United Stes from 2000-2016, an
 - **Validation 2:** Segment data by location type (urban vs. rural) and analyze pollution patterns using descriptive statistics, visualizations (e.g., box plots, heatmaps), and clustering techniques (e.g., K-means).
 - **Validation 3:** Analyze the relationship between wind speed, humidity, and pollution levels using correlation analysis, time-series methods for seasonal trends, and regression models to quantify their impact.
 
+---
+## Modeling Plan for Air Quality Prediction:
+ We will create 4 models for predicting air quaility levels: 
+ 1. Ozone (O₃) 
+ 2. Particulate Matter (PM2.5) 
+ 3. Nitrogen Dioxide (NO₂)
+ 4. Carbon Monoxide (CO) 
+
+ Each model will be built using machine learning techniques such as: 
+ - **Linear Regression:** Baseline predictive analysis
+ - **Decision Trees & Random Forest: **Capturing non-linear relationships 
+ - **Neural Networks (if applicable):** For adanced forecasting
+ - **Evaluation Metrics:** RMSE, MAE, R² score
+
 ## Project Plan and Roadmap  
 
 ### **Phase 1: Data Preparation**
