@@ -27,10 +27,12 @@ This project explores pollution levels across The United Stes from 2000-2016, an
 ## Hypothesis and how to validate?
 - **Hypothesis 1:** Higher temperatures correlate with increased pollution levels. 
 - **Hypothesis 2:** Urban areas exhibit higher pollution levels than rural areas. 
+- **Hypothesis 3:** Weather factors such as wind speed and humidity impact pollution dispersion
 
 ## Validation 
-- **Validation:** Statistical analysis, correlation checks and machine learning techniques will confirm relatioships. 
-- Conduct regression & predictive modelling
+- **Validation 1:** Analyze the correlation between temperature and key pollutants (O₃, PM2.5, NO₂, CO) using statistical and machine learning models (e.g., linear regression, decision trees) to predict pollution levels.
+- **Validation 2:** Segment data by location type (urban vs. rural) and analyze pollution patterns using descriptive statistics, visualizations (e.g., box plots, heatmaps), and clustering techniques (e.g., K-means).
+- **Validation 3:** Analyze the relationship between wind speed, humidity, and pollution levels using correlation analysis, time-series methods for seasonal trends, and regression models to quantify their impact.
 
 ## Project Plan and Roadmap  
 
