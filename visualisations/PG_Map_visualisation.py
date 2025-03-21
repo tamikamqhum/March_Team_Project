@@ -124,14 +124,12 @@ else:
             color=color,
             fill=True,
             fill_opacity=0.6,
-            popup=(f"{row['City']}, {row['State']} 
-                    {measure} AQI Group: {round(row[f'{measure}_AQI_Group'], 2)}")
-        ).add_to(m)
+            popup=f"{row['City']}, {row['State']}<br>{measure} AQI Group: {round(row[f'{measure}_AQI_Group'], 2)}").add_to(m)
 
 # Add weather icons if enabled
 if show_weather:
     city_weather = df[df["Date"].dt.to_period(mode[0]) == selected_date.to_period(mode[0])]
-    city_weather = city_weather.groupby(["City", "State", "WS_Latitude", "WS_Longitude"] + weather_cols)[[]].size().reset_index()
+    city_weather = city_weather.groupby(["City", "State", "WS_Latitude", "WS_Longitude"])[weather_cols].max().reset_index()
     for _, row in city_weather.iterrows():
         lat, lon = row["WS_Latitude"], row["WS_Longitude"]
         if pd.isna(lat) or pd.isna(lon):
@@ -165,14 +163,14 @@ if display_level == "City" and st.sidebar.checkbox("Show AQI Bar Charts"):
                 labels.append(pollutant)
                 colors.append(get_color(value))
         if aqi_values:
-            html = '<div style="width:120px; height:100px;">
+            html = '<div style="width:120px; height:100px;">'
             for label, val, color in zip(labels, aqi_values, colors):
                 html += f'<div style="background:{color};width:{int(val*15)}px">{label}: {val}</div>'
             html += '</div>'
             folium.Marker(
                 location=[lat, lon],
                 icon=folium.DivIcon(html=html)
-            ).add_to(m) for weather icons and AQI colors
+            ).add_to(m)
 legend_html = '''
  <div style="position: fixed; 
      top: 80px; right: 20px; width: 260px; height: auto; 
