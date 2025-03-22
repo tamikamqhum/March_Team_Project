@@ -1,0 +1,28 @@
+Collecting scikit-learn==1.3.2
+  Downloading scikit_learn-1.3.2-cp312-cp312-win_amd64.whl.metadata (11 kB)
+Collecting joblib==1.3.2
+  Downloading joblib-1.3.2-py3-none-any.whl.metadata (5.4 kB)
+Requirement already satisfied: numpy in h:\vscode\march group\march_team_project\.venv\lib\site-packages (1.26.1)
+Collecting numpy
+  Using cached numpy-2.2.4-cp312-cp312-win_amd64.whl.metadata (60 kB)
+  Using cached numpy-1.26.4-cp312-cp312-win_amd64.whl.metadata (61 kB)
+Requirement already satisfied: scipy>=1.5.0 in h:\vscode\march group\march_team_project\.venv\lib\site-packages (from scikit-learn==1.3.2) (1.13.1)
+Requirement already satisfied: threadpoolctl>=2.0.0 in h:\vscode\march group\march_team_project\.venv\lib\site-packages (from scikit-learn==1.3.2) (3.6.0)
+Downloading scikit_learn-1.3.2-cp312-cp312-win_amd64.whl (9.1 MB)
+   ---------------------------------------- 9.1/9.1 MB 15.8 MB/s eta 0:00:00
+Downloading joblib-1.3.2-py3-none-any.whl (302 kB)
+Using cached numpy-1.26.4-cp312-cp312-win_amd64.whl (15.5 MB)
+Installing collected packages: numpy, joblib, scikit-learn
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.26.1
+    Uninstalling numpy-1.26.1:
+      Successfully uninstalled numpy-1.26.1
+  Attempting uninstall: joblib
+    Found existing installation: joblib 1.4.2
+    Uninstalling joblib-1.4.2:
+      Successfully uninstalled joblib-1.4.2
+  Attempting uninstall: scikit-learn
+    Found existing installation: scikit-learn 1.6.1
+    Uninstalling scikit-learn-1.6.1:
+      Successfully uninstalled scikit-learn-1.6.1
+Successfully installed joblib-1.3.2 numpy-1.26.4 scikit-learn-1.3.2
