@@ -18,23 +18,42 @@ def map_visualisation_body():
     # Streamlit UI
     st.title("Air Quality Map with Filters")
 
-    # Sidebar filters
-    mode = st.sidebar.selectbox("Select Time Mode", ["Day", "Week", "Month", "Quarter", "Year"])
-    if mode == "Day":
-        selected_date = st.sidebar.date_input("Select Date", df["Date"].min())
-    elif mode == "Week":
-        year = st.sidebar.selectbox("Select Year", sorted(df["Date"].dt.year.unique(), reverse=True))
-        week = st.sidebar.selectbox("Select Week", list(range(1, 54)))
-        selected_date = pd.to_datetime(f"{year}-W{week}-1", format="%G-W%V-%u")
-    elif mode == "Month":
-        year = st.sidebar.selectbox("Select Year", sorted(df["Date"].dt.year.unique(), reverse=True))
-        month = st.sidebar.selectbox("Select Month", list(range(1, 13)))
-        selected_date = pd.to_datetime(f"{year}-{month:02d}-01")
-    else:
-        selected_date = st.sidebar.date_input("Select Date", df["Date"].min())
-    measure = st.sidebar.selectbox("Select AQI Measure", ["NO2", "CO", "SO2", "O3"])
-    show_weather = st.sidebar.checkbox("Show Weather Icons Around Markers", value=True)
-    display_level = st.sidebar.selectbox("Display Level", ["City", "State"])
+    with st.container():
+        col1, col2, col3, col4, col5 = st.columns(5)
+
+        with col1:
+            mode = st.selectbox("Select Time Mode", ["Day", "Week", "Month", "Quarter", "Year"], index=2)
+
+        with col2:
+            if mode == "Day":
+                selected_date = st.date_input("Select Date", df["Date"].min())
+            elif mode == "Week":
+                cola, colb = st.columns(2)
+                with cola:
+                    year = st.selectbox("Year", sorted(df["Date"].dt.year.unique(), reverse=True), key="week_year")
+                with colb:
+                    week = st.selectbox("Week", list(range(1, 54)))
+                selected_date = pd.to_datetime(f"{year}-W{week}-1", format="%G-W%V-%u")
+            elif mode == "Month":
+                cola, colb = st.columns(2)
+                with cola:
+                    year = st.selectbox("Year", sorted(df["Date"].dt.year.unique(), reverse=True), key="month_year")
+                with colb:
+                    month = st.selectbox("Month", list(range(1, 13)))
+                selected_date = pd.to_datetime(f"{year}-{month:02d}-01")
+            else:
+                selected_date = st.date_input("Select Date", df["Date"].min(), key="season_date")
+
+        with col3:
+            measure = st.selectbox("AQI Measure", ["NO2", "CO", "SO2", "O3"])
+
+        with col4:
+            display_level = st.selectbox("Display Level", ["City", "State"], index=1)
+
+        with col5:
+            show_weather = st.checkbox("Weather Icons", value=True)
+
+
 
     # Weather condition mapping
     weather_icons = {
@@ -50,6 +69,9 @@ def map_visualisation_body():
     df['Season'] = df['Date'].dt.month % 12 // 3 + 1
     season_map = {1: 'Winter', 2: 'Spring', 3: 'Summer', 4: 'Autumn'}
     df['SeasonGroup'] = df['Season'].map(season_map)
+
+    # Rename latitude and longitude columns
+    df.rename(columns={"StationLatitude": "WS_Latitude", "StationLongitude": "WS_Longitude"}, inplace=True)
 
     # Define aggregation level
     agg_level = {
@@ -79,14 +101,12 @@ def map_visualisation_body():
     else:
         df_filtered = df[df["SeasonGroup"] == df[df["Date"] == selected_date]["SeasonGroup"].iloc[0]]
 
-    # Group by level
     if not df_filtered.empty:
         df_filtered = df_filtered.groupby(agg_level).agg(agg_dict).reset_index()
 
-    # Create map and city polygons if City level
+    # Create map
     m = folium.Map(location=[39.8283, -98.5795], zoom_start=4)
 
-    # Color map for AQI levels
     def get_color(aqi_group):
         return {
             1: "#00e400", 2: "#a3ff00", 3: "#ffff00",
@@ -96,11 +116,9 @@ def map_visualisation_body():
     # Load geojson for US states
     geo_url = "https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json"
     geojson_data = requests.get(geo_url).json()
-
-    # Add region key
     df_filtered["Region"] = df_filtered["State"]
 
-    # Add choropleth layer
+    # Choropleth
     if display_level == "State":
         choropleth = folium.Choropleth(
             geo_data=geojson_data,
@@ -116,6 +134,11 @@ def map_visualisation_body():
             legend_name=f"{measure} AQI Group"
         )
         choropleth.add_to(m)
+
+        # Remove default color bar
+        for child in list(m._children):
+            if child.startswith("color_map"):
+                del m._children[child]
     else:
         for _, row in df_filtered.iterrows():
             lat = row.get("WS_Latitude")
@@ -129,9 +152,10 @@ def map_visualisation_body():
                 color=color,
                 fill=True,
                 fill_opacity=0.6,
-                popup=f"{row['City']}, {row['State']}<br>{measure} AQI Group: {round(row[f'{measure}_AQI_Group'], 2)}").add_to(m)
+                popup=f"{row['City']}, {row['State']}<br>{measure} AQI Group: {round(row[f'{measure}_AQI_Group'], 2)}"
+            ).add_to(m)
 
-    # Add weather icons if enabled
+    # Weather icons
     if show_weather:
         city_weather = df[df["Date"].dt.to_period(mode[0]) == selected_date.to_period(mode[0])]
         city_weather = city_weather.groupby(["City", "State", "WS_Latitude", "WS_Longitude"])[weather_cols].max().reset_index()
@@ -151,46 +175,54 @@ def map_visualisation_body():
                 ).add_to(m)
                 angle += 360 / max(len(conditions), 1)
 
-    # Optional: show bar charts for AQI values at each city
-    if display_level == "City" and st.sidebar.checkbox("Show AQI Bar Charts"):
-        for _, row in df_filtered.iterrows():
-            lat = row.get("WS_Latitude")
-            lon = row.get("WS_Longitude")
-            if pd.isna(lat) or pd.isna(lon):
-                continue
-            aqi_values = []
-            labels = []
-            colors = []
-            for pollutant in ["NO2", "CO", "SO2", "O3"]:
-                value = row.get(f"{pollutant}_AQI_Group")
-                if not pd.isna(value):
-                    aqi_values.append(value)
-                    labels.append(pollutant)
-                    colors.append(get_color(value))
-            if aqi_values:
-                html = '<div style="width:120px; height:100px;">'
-                for label, val, color in zip(labels, aqi_values, colors):
-                    html += f'<div style="background:{color};width:{int(val*15)}px">{label}: {val}</div>'
-                html += '</div>'
-                folium.Marker(
-                    location=[lat, lon],
-                    icon=folium.DivIcon(html=html)
-                ).add_to(m)
-    legend_html = '''
-    <div style="position: fixed; 
-        top: 80px; right: 20px; width: 260px; height: auto; 
-        background-color: white; border:2px solid grey; z-index:9999; font-size:14px; padding: 10px">
-    <b>Legend</b><br>
-    <b>AQI Colors:</b><br>
-    <i style="background:#00e400">&nbsp;&nbsp;&nbsp;&nbsp;</i> Good (1)<br>
-    <i style="background:#a3ff00">&nbsp;&nbsp;&nbsp;&nbsp;</i> Moderate (2)<br>
-    <i style="background:#ffff00">&nbsp;&nbsp;&nbsp;&nbsp;</i> Unhealthy for Sensitive Groups (3)<br>
-    <i style="background:#ff7e00">&nbsp;&nbsp;&nbsp;&nbsp;</i> Unhealthy (4)<br>
-    <i style="background:#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;</i> Very Unhealthy (5)<br>
-    <i style="background:#8f3f97">&nbsp;&nbsp;&nbsp;&nbsp;</i> Hazardous (6)<br>
-    <br><b>Weather Icons:</b><br>
-    ''' + ''.join([f'{icon} - {code}<br>' for code, icon in weather_icons.items()]) + '<br><b>Note:</b> Areas shown in light red have no available data.</div>'
-    m.get_root().html.add_child(folium.Element(legend_html))
-
-    # Render map in Streamlit
+    # Render the map
     st_folium(m, width=1600, height=500)
+
+    # Legend HTML block
+    legend_html = f"""
+    <div style="
+        background-color: {theme['background']};
+        border: 2px solid {theme['primary']};
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 25px;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+        font-size: 15px;
+        color: {theme['text']};
+        font-family: 'sans-serif';
+    ">
+        <div style="font-weight: bold; font-size: 18px; margin-bottom: 12px; color: {theme['primary']};">
+            Legend
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: flex-start;">
+            <div style="flex: 1; min-width: 220px;">
+                <div style="font-weight: bold; margin-bottom: 6px;">AQI Colors</div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <div><span style="background:#00e400; width:20px; height:20px; display:inline-block; border-radius:4px; margin-right:8px;"></span> Good (1)</div>
+                    <div><span style="background:#a3ff00; width:20px; height:20px; display:inline-block; border-radius:4px; margin-right:8px;"></span> Moderate (2)</div>
+                    <div><span style="background:#ffff00; width:20px; height:20px; display:inline-block; border-radius:4px; margin-right:8px;"></span> Unhealthy for Sensitive Groups (3)</div>
+                    <div><span style="background:#ff7e00; width:20px; height:20px; display:inline-block; border-radius:4px; margin-right:8px;"></span> Unhealthy (4)</div>
+                    <div><span style="background:#ff0000; width:20px; height:20px; display:inline-block; border-radius:4px; margin-right:8px;"></span> Very Unhealthy (5)</div>
+                    <div><span style="background:#8f3f97; width:20px; height:20px; display:inline-block; border-radius:4px; margin-right:8px;"></span> Hazardous (6)</div>
+                </div>
+            </div>
+            <div style="flex: 2; min-width: 300px;">
+                <div style="font-weight: bold; margin-bottom: 6px;">Weather Icons</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    """
+
+    for code, icon in weather_icons.items():
+        legend_html += f'<div style="min-width: 60px;"><span style="font-size:18px;">{icon}</span> <span style="font-size:13px;">{code}</span></div>'
+
+    legend_html += f"""
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 12px; font-size: 13px; color: {theme['text']}cc;">
+            <b>Note:</b> Areas shown in light red have no available data.
+        </div>
+    </div>
+    """
+
+    # Render the legend
+    st.markdown(legend_html, unsafe_allow_html=True)

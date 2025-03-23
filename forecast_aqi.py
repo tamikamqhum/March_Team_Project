@@ -109,7 +109,7 @@ def forecast_aqi_page():
     col1, col2, col3 = st.columns([1, 1, 1])
     @st.cache_data
     def load_city_locations():
-        df = pd.read_csv("Source_Data//Us_Stations_with_City_100km.csv", usecols=["City", "Name", "Latitude", "Longitude"])
+        df = pd.read_csv("Outputs//Us_Stations_with_City_100km.csv", usecols=["City", "Name", "Latitude", "Longitude"])
         df["City"] = df["City"].str.lower()
         return df
 
@@ -135,7 +135,10 @@ def forecast_aqi_page():
         weather_data["CityDistance"] = st.number_input("Distance to Nearest City (km)", value=10.0)
     with col3:
         weather_data["WS_Elevation"] = st.number_input("Station Elevation (m)", value=200.0)
-
+    # times temperature by 10 to represent the values used to train the model
+    weather_data["TAVG"] = weather_data["TAVG"] * 10
+    weather_data["TMAX"] = weather_data["TMAX"] * 10
+    weather_data["TMIN"] = weather_data["TMIN"] * 10
     st.markdown("---")
 
     # === Predict & Explain ===
@@ -211,10 +214,6 @@ def forecast_aqi_page():
             st.pyplot(fig)
 
             st.markdown(f"**AQI Classes:** {', '.join(map(str, metadata['classes']))}")
-
-    st.markdown("---")
-    st.markdown("🔍 **Feature Descriptions**")
-    st.write(FEATURES)
 
     st.markdown("---")
     st.markdown("📚 **Data Sources**")

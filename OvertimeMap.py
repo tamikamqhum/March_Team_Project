@@ -21,6 +21,9 @@ def overtime_map_body():
     # --- Load data ---
     df = pd.read_csv("Outputs/Dashboarddata.zip", parse_dates=["Date"])
 
+    # Rename latitude and longitude columns
+    df.rename(columns={"StationLatitude": "WS_Latitude", "StationLongitude": "WS_Longitude"}, inplace=True)
+
     # --- Weather indicators ---
     weather_vars = [
         "WT16", "WT01", "WT04", "WT18", "WT22", "WT09", "WT11", "WT06",
