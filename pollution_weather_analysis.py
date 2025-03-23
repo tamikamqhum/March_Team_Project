@@ -1,13 +1,13 @@
 import streamlit as st
+<<<<<<< HEAD:streamlit/pollution_weather_analysis.py
 <<<<<<< HEAD
+=======
+from utils.theme import get_theme
+>>>>>>> 8dd9f8210c7c13c197c17dc15e2f80411222278f:pollution_weather_analysis.py
 
-# Page Configurations
-st.set_page_config(page_title="Pollution & Weather Insights",
-                   page_icon="🌍",
-                   layout="wide")
+theme = get_theme()
 
-
-def pollution_weather_analysis():
+def Intro():
     # Intro Section 
     st.title("🌍 Pollution & Weather Insights (2000-2016)")
     st.markdown("""
