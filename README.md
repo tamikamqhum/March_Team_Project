@@ -1,6 +1,6 @@
 # A Comprehensive Analysis of Pollution and Weather Data (2000-2016)
 
-This project explores pollution levels across The United Stes from 2000-2016, analysing their relationship with weather patterns. It leverages multiple datasets to uncover insights into air quality, climate trends and their broader environmental impact. 
+This project explores pollution levels across The United States from 2000-2016, analysing their relationship with weather patterns. It leverages multiple datasets to uncover insights into air quality, climate trends and their broader environmental impact. 
 
 # ![Pollution Image](https://cms.accuweather.com/wp-content/uploads/2020/02/cropped-city-under-a-cloudy-sky-2771744.jpg)
 
@@ -119,6 +119,7 @@ This project explores pollution levels across The United Stes from 2000-2016, an
 - Interactive visualisations for pollution trends.
 - Filters for specific regions and time periods. 
 - Predictive insights on pollution levels.
+
 
 ## Deployment
 ### Heroku
