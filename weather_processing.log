@@ -1,0 +1,85 @@
+2025-03-23 10:01:11,362 [INFO] Reading file: Not_to_be_shared_to_repo\2000.csv.gz
+2025-03-23 10:01:28,364 [INFO] Initial shape: (34973736, 4)
+2025-03-23 10:01:40,551 [INFO] Filtered shape: (3684438, 4)
+2025-03-23 10:01:44,949 [INFO] Final shape: (806673, 37)
+2025-03-23 10:01:55,287 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2000.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:01:55,288 [INFO] Reading file: Not_to_be_shared_to_repo\2001.csv.gz
+2025-03-23 10:02:13,103 [INFO] Initial shape: (35499054, 4)
+2025-03-23 10:02:25,740 [INFO] Filtered shape: (3728968, 4)
+2025-03-23 10:02:29,907 [INFO] Final shape: (805263, 36)
+2025-03-23 10:02:39,704 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2001.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:02:39,706 [INFO] Reading file: Not_to_be_shared_to_repo\2002.csv.gz
+2025-03-23 10:02:58,490 [INFO] Initial shape: (35891323, 4)
+2025-03-23 10:03:10,667 [INFO] Filtered shape: (3777874, 4)
+2025-03-23 10:03:14,884 [INFO] Final shape: (812083, 36)
+2025-03-23 10:03:25,063 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2002.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:03:25,063 [INFO] Reading file: Not_to_be_shared_to_repo\2003.csv.gz
+2025-03-23 10:03:44,753 [INFO] Initial shape: (36590147, 4)
+2025-03-23 10:03:58,328 [INFO] Filtered shape: (3834501, 4)
+2025-03-23 10:04:02,961 [INFO] Final shape: (829684, 35)
+2025-03-23 10:04:12,728 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2003.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:04:12,729 [INFO] Reading file: Not_to_be_shared_to_repo\2004.csv.gz
+2025-03-23 10:04:31,617 [INFO] Initial shape: (37165913, 4)
+2025-03-23 10:04:44,309 [INFO] Filtered shape: (3879398, 4)
+2025-03-23 10:04:48,672 [INFO] Final shape: (848217, 36)
+2025-03-23 10:05:00,188 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2004.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:05:00,188 [INFO] Reading file: Not_to_be_shared_to_repo\2005.csv.gz
+2025-03-23 10:05:19,482 [INFO] Initial shape: (36498973, 4)
+2025-03-23 10:05:32,996 [INFO] Filtered shape: (3757600, 4)
+2025-03-23 10:05:37,355 [INFO] Final shape: (858366, 36)
+2025-03-23 10:05:48,391 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2005.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:05:48,392 [INFO] Reading file: Not_to_be_shared_to_repo\2006.csv.gz
+2025-03-23 10:06:08,471 [INFO] Initial shape: (37785659, 4)
+2025-03-23 10:06:22,312 [INFO] Filtered shape: (4084550, 4)
+2025-03-23 10:06:26,898 [INFO] Final shape: (992188, 34)
+2025-03-23 10:06:38,985 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2006.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:06:38,986 [INFO] Reading file: Not_to_be_shared_to_repo\2007.csv.gz
+2025-03-23 10:06:58,648 [INFO] Initial shape: (38355172, 4)
+2025-03-23 10:07:12,695 [INFO] Filtered shape: (4542123, 4)
+2025-03-23 10:07:18,498 [INFO] Final shape: (1214499, 34)
+2025-03-23 10:07:33,026 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2007.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:07:33,027 [INFO] Reading file: Not_to_be_shared_to_repo\2008.csv.gz
+2025-03-23 10:07:54,257 [INFO] Initial shape: (39978906, 4)
+2025-03-23 10:08:07,978 [INFO] Filtered shape: (5210771, 4)
+2025-03-23 10:08:14,946 [INFO] Final shape: (1537131, 34)
+2025-03-23 10:08:34,737 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2008.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:08:34,738 [INFO] Reading file: Not_to_be_shared_to_repo\2009.csv.gz
+2025-03-23 10:08:56,780 [INFO] Initial shape: (40412155, 4)
+2025-03-23 10:09:11,058 [INFO] Filtered shape: (5386709, 4)
+2025-03-23 10:09:17,432 [INFO] Final shape: (1732828, 34)
+2025-03-23 10:09:37,231 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2009.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:09:37,231 [INFO] Reading file: Not_to_be_shared_to_repo\2010.csv.gz
+2025-03-23 10:09:59,392 [INFO] Initial shape: (40792369, 4)
+2025-03-23 10:10:13,589 [INFO] Filtered shape: (5586997, 4)
+2025-03-23 10:10:20,086 [INFO] Final shape: (1807485, 34)
+2025-03-23 10:10:40,315 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2010.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:10:40,341 [INFO] Reading file: Not_to_be_shared_to_repo\2011.csv.gz
+2025-03-23 10:11:00,671 [INFO] Initial shape: (37859631, 4)
+2025-03-23 10:11:14,417 [INFO] Filtered shape: (4854777, 4)
+2025-03-23 10:11:20,580 [INFO] Final shape: (1852974, 34)
+2025-03-23 10:11:41,613 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2011.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:11:41,614 [INFO] Reading file: Not_to_be_shared_to_repo\2012.csv.gz
+2025-03-23 10:12:02,562 [INFO] Initial shape: (37654815, 4)
+2025-03-23 10:12:16,181 [INFO] Filtered shape: (5046332, 4)
+2025-03-23 10:12:22,716 [INFO] Final shape: (1962795, 34)
+2025-03-23 10:12:45,360 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2012.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:12:45,361 [INFO] Reading file: Not_to_be_shared_to_repo\2013.csv.gz
+2025-03-23 10:13:05,621 [INFO] Initial shape: (36609050, 4)
+2025-03-23 10:13:19,189 [INFO] Filtered shape: (5139176, 4)
+2025-03-23 10:13:25,594 [INFO] Final shape: (2001951, 34)
+2025-03-23 10:13:50,309 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2013.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:13:50,309 [INFO] Reading file: Not_to_be_shared_to_repo\2014.csv.gz
+2025-03-23 10:14:10,838 [INFO] Initial shape: (36189038, 4)
+2025-03-23 10:14:24,318 [INFO] Filtered shape: (5055547, 4)
+2025-03-23 10:14:30,504 [INFO] Final shape: (1969870, 27)
+2025-03-23 10:14:48,547 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2014.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:14:48,548 [INFO] Reading file: Not_to_be_shared_to_repo\2015.csv.gz
+2025-03-23 10:15:09,793 [INFO] Initial shape: (36748053, 4)
+2025-03-23 10:15:23,095 [INFO] Filtered shape: (5044737, 4)
+2025-03-23 10:15:29,478 [INFO] Final shape: (1981536, 25)
+2025-03-23 10:15:46,733 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2015.csv.gz_Weather_Unpacked.zip
+2025-03-23 10:15:46,734 [INFO] Reading file: Not_to_be_shared_to_repo\2016.csv.gz
+2025-03-23 10:16:06,531 [INFO] Initial shape: (37093092, 4)
+2025-03-23 10:16:20,493 [INFO] Filtered shape: (5157934, 4)
+2025-03-23 10:16:26,901 [INFO] Final shape: (1996781, 27)
+2025-03-23 10:16:45,760 [INFO] Saved output to: Not_to_be_shared_to_repo\Us_2016.csv.gz_Weather_Unpacked.zip
