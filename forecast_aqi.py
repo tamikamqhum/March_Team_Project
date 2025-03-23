@@ -1,8 +1,11 @@
 import streamlit as st
 import pandas as pd
-from app_pages.aqi_model_utils import prepare_input, predict_aqi_group, get_model_metadata, FEATURES
+from models.aqi_model_utils import prepare_input, predict_aqi_group, get_model_metadata, FEATURES
 from datetime import datetime
 import matplotlib.pyplot as plt
+from utils.theme import get_theme
+
+theme = get_theme()
 
 def forecast_aqi_page():
     st.markdown("---")
