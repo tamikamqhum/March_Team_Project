@@ -1,9 +1,6 @@
 import streamlit as st
-<<<<<<< HEAD:streamlit/pollution_weather_analysis.py
-<<<<<<< HEAD
-=======
 from utils.theme import get_theme
->>>>>>> 8dd9f8210c7c13c197c17dc15e2f80411222278f:pollution_weather_analysis.py
+
 
 theme = get_theme()
 
