@@ -6,6 +6,10 @@ from streamlit_folium import st_folium
 import json
 import requests
 import numpy as np
+from utils.theme import get_theme
+
+theme = get_theme()
+
 
 def map_visualisation_body():
     # Load data from ZIP using pandas (single file in zip assumption)

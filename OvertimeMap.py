@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from calplot import calplot
 from datetime import timedelta
+from utils.theme import get_theme
+
+theme = get_theme()
 matplotlib.use("Agg")  # Use non-GUI backend to avoid font fallback spam
 
 def overtime_map_body():
