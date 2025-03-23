@@ -22,6 +22,8 @@ files_to_process = ["2000.csv.gz",
 process_weather_files(
     file_list=files_to_process,
     config_path="config/element_config.json",
-    stations_file="Outputs/Us_Stations_with_City_100km.csv",
-    output_dir="Not_to_be_shared_to_repo"
+    stations_file="Source_Data/Us_City_with_station.csv",
+    output_dir="Not_to_be_shared_to_repo",
+    station_fieldname="ClosestStation",
+    combine_output=False,
 )

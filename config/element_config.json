@@ -40,5 +40,6 @@
   "ACMC": "mean",
   "ACMH": "mean",
   "AWND": "mean",
-  "PGTM": "mean"
+  "PGTM": "mean",
+  "WDMV": "max"
 }

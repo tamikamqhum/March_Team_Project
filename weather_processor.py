@@ -1,4 +1,3 @@
-
 import os
 import json
 import logging
@@ -24,12 +23,17 @@ def process_weather_files(
     file_list: List[str],
     config_path: str,
     stations_file: str,
-    output_dir: str
+    station_fieldname: str,
+    output_dir: str,
+    combine_output: bool = False,
+    combined_filename: str = "All_Weather_Unpacked.zip"
 ) -> None:
     element_agg_map = load_element_config(config_path)
     element_list = list(element_agg_map.keys())
     station_df = pd.read_csv(stations_file)
-    station_ids = set(station_df["StationId"])
+    station_ids = set(station_df[station_fieldname])
+
+    combined_dfs = []
 
     for file in tqdm(file_list, desc="Processing files"):
         filepath = os.path.join("Not_to_be_shared_to_repo", file)
@@ -68,7 +72,17 @@ def process_weather_files(
         final_df = pd.concat(pivoted_dfs, axis=1).reset_index()
         logging.info(f"Final shape: {final_df.shape}")
 
-        output_file = f"Us_{file}_Weather_Unpacked.zip"
-        output_path = os.path.join(output_dir, output_file)
-        final_df.to_csv(output_path, index=False, compression="zip")
-        logging.info(f"Saved output to: {output_path}")
+        if combine_output:
+            final_df["SourceFile"] = file  # Optional traceability
+            combined_dfs.append(final_df)
+        else:
+            output_file = f"Us_{file}_Weather_Unpacked.zip"
+            output_path = os.path.join(output_dir, output_file)
+            final_df.to_csv(output_path, index=False, compression="zip")
+            logging.info(f"Saved output to: {output_path}")
+
+    if combine_output and combined_dfs:
+        final_combined_df = pd.concat(combined_dfs, axis=0, ignore_index=True)
+        output_path = os.path.join(output_dir, combined_filename)
+        final_combined_df.to_csv(output_path, index=False, compression="zip")
+        logging.info(f"Saved combined output to: {output_path}")
