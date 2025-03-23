@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import scipy.stats as stats
-import numpy as np
+from utils.theme import get_theme
 
-def correllation_body():
-    st.title("🌍 AQI vs Weather Conditions: Correlation Overview")
+theme = get_theme()
+
+def correllation_body2():
+    st.title("🌍 AQI vs Weather Conditions: More Correlation Overview")
     @st.cache_data
     def load_data():
         return pd.read_csv("Outputs//DashBoardData.zip", parse_dates=["Date"])
@@ -22,55 +23,55 @@ def correllation_body():
     ]
 
     weather_cols = ["TAVG", "AWND", "PRCP", "WDMV"]
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""
-        This page explores how weather patterns relate to Air Quality Index (AQI) levels using:
-        - 📊 **Heatmaps** with correlation and statistical significance
-        - 🌀 **PairPlots** to show trends between AQI and weather
-        - 📉 **Bar Charts** showing average AQI per weather condition
+    # col1, col2 = st.columns(2)
+    # with col1:
+    #     st.markdown("""
+    #     This page explores how weather patterns relate to Air Quality Index (AQI) levels using:
+    #     - 📊 **Heatmaps** with correlation and statistical significance
+    #     - 🌀 **PairPlots** to show trends between AQI and weather
+    #     - 📉 **Bar Charts** showing average AQI per weather condition
 
-        Correlation is measured using the **Pearson coefficient**, ranging from -1 to 1.  
-        We mark correlations with:
-        - `*` = p < 0.05 (statistically significant)
-        """)
-    with col2:
-        # 📌 Function to calculate correlation + p-value matrix
-        def correlation_with_pvalues(df, target):
-            results = pd.DataFrame(index=[target], columns=weather_cols)
-            annotations = pd.DataFrame(index=[target], columns=weather_cols)
+    #     Correlation is measured using the **Pearson coefficient**, ranging from -1 to 1.  
+    #     We mark correlations with:
+    #     - `*` = p < 0.05 (statistically significant)
+    #     """)
+    # with col2:
+    #     # 📌 Function to calculate correlation + p-value matrix
+    #     def correlation_with_pvalues(df, target):
+    #         results = pd.DataFrame(index=[target], columns=weather_cols)
+    #         annotations = pd.DataFrame(index=[target], columns=weather_cols)
 
-            for col in weather_cols:
-                series = df[[target, col]].dropna()
-                if not series.empty:
-                    r, p = stats.pearsonr(series[target], series[col])
-                    results.loc[target, col] = r * 100
-                    annotations.loc[target, col] = f"{r * 100:.1f}{'*' if p < 0.05 else ''}"
-                else:
-                    results.loc[target, col] = np.nan
-                    annotations.loc[target, col] = ""
+    #         for col in weather_cols:
+    #             series = df[[target, col]].dropna()
+    #             if not series.empty:
+    #                 r, p = stats.pearsonr(series[target], series[col])
+    #                 results.loc[target, col] = r * 100
+    #                 annotations.loc[target, col] = f"{r * 100:.1f}{'*' if p < 0.05 else ''}"
+    #             else:
+    #                 results.loc[target, col] = np.nan
+    #                 annotations.loc[target, col] = ""
 
-            return results.astype(float), annotations
+    #         return results.astype(float), annotations
 
-        # ────────────────────────────────────────────────────────────────────────────────
-        # 🔥 HEATMAP SECTION
-        st.header("📈 Correlation Heatmaps with Significance")
+        # # ────────────────────────────────────────────────────────────────────────────────
+        # # 🔥 HEATMAP SECTION
+        # st.header("📈 Correlation Heatmaps with Significance")
 
-        for label in ["Mean"]:
-            st.subheader(f"🧪 AQI {label} vs Weather")
-            cols = st.columns(2)
+        # for label in ["Mean"]:
+        #     st.subheader(f"🧪 AQI {label} vs Weather")
+        #     cols = st.columns(2)
 
-            for i, (mean_col, group_col, title) in enumerate(aqi_info):
-                aqi_col = mean_col if label == "Mean" else group_col
-                df_subset = df[[aqi_col] + weather_cols].dropna()
-                corr, annotations = correlation_with_pvalues(df_subset, aqi_col)
+        #     for i, (mean_col, group_col, title) in enumerate(aqi_info):
+        #         aqi_col = mean_col if label == "Mean" else group_col
+        #         df_subset = df[[aqi_col] + weather_cols].dropna()
+        #         corr, annotations = correlation_with_pvalues(df_subset, aqi_col)
 
-                with cols[i % 2]:
-                    st.markdown(f"**{title} ({label})**")
-                    fig, ax = plt.subplots(figsize=(6, 1.5))
-                    sns.heatmap(corr, annot=annotations, fmt="", cmap="coolwarm", center=0, ax=ax, cbar_kws={'format': '%.0f%%'})
-                    ax.set_title(f"{title} ({label}) vs Weather", fontsize=10)
-                    st.pyplot(fig)
+        #         with cols[i % 2]:
+        #             st.markdown(f"**{title} ({label})**")
+        #             fig, ax = plt.subplots(figsize=(6, 1.5))
+        #             sns.heatmap(corr, annot=annotations, fmt="", cmap="coolwarm", center=0, ax=ax, cbar_kws={'format': '%.0f%%'})
+        #             ax.set_title(f"{title} ({label}) vs Weather", fontsize=10)
+        #             st.pyplot(fig)
 
     # with col2:
     #     # ────────────────────────────────────────────────────────────────────────────────

@@ -1,12 +1,9 @@
 import streamlit as st
+from utils.theme import get_theme
 
-# Page Configurations
-st.set_page_config(page_title="Pollution & Weather Insights",
-                   page_icon="🌍",
-                   layout="wide")
+theme = get_theme()
 
-
-def pollution_weather_analysis():
+def Intro():
     # Intro Section 
     st.title("🌍 Pollution & Weather Insights (2000-2016)")
     st.markdown("""
