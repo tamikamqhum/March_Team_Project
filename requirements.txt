@@ -12,3 +12,12 @@ joblib>=1.2.0
 streamlit_option_menu
 pyarrow
 tqdm
+typing
+logging
+scipy
+folium
+requests
+geopy
+streamlit_folium
+calplot
+toml
