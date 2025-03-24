@@ -13,7 +13,7 @@ theme = get_theme()
 
 def map_visualisation_body():
     # Load data from ZIP using pandas (single file in zip assumption)
-    df = pd.read_csv("Outputs\DashBoardData.zip", parse_dates=["Date"])
+    df = pd.read_csv("Outputs/DashBoardData.zip", parse_dates=["Date"])
 
     # Streamlit UI
     st.title("Air Quality Map with Filters")
