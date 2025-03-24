@@ -1,6 +1,6 @@
 # A Comprehensive Analysis of Pollution and Weather Data (2000-2016)
 
-This project explores pollution levels across The United Stes from 2000-2016, analysing their relationship with weather patterns. It leverages multiple datasets to uncover insights into air quality, climate trends and their broader environmental impact. 
+This project explores pollution levels across The United States from 2000-2016, analysing their relationship with weather patterns. It leverages multiple datasets to uncover insights into air quality, climate trends and their broader environmental impact. 
 
 # ![Pollution Image](https://cms.accuweather.com/wp-content/uploads/2020/02/cropped-city-under-a-cloudy-sky-2771744.jpg)
 
@@ -28,11 +28,19 @@ This project explores pollution levels across The United Stes from 2000-2016, an
 - **Hypothesis 1:** Higher temperatures correlate with increased pollution levels. 
 - **Hypothesis 2:** Urban areas exhibit higher pollution levels than rural areas. 
 - **Hypothesis 3:** Weather factors such as wind speed and humidity impact pollution dispersion
+- **Hypothesis 4:** CO, SO₂, NO₂, and O₃ AQI levels have decreased from 2003 to 2013 due to environmental regulations
+- **Hypothesis 5:** SO₂ and NO₂ AQI levels are higher in states with more coal power plants (e.g., Texas, Pennsylvania, Illinois)
+- **Hypothesis 6:** CO and NO₂ AQI levels spike during winter months due to increased heating and stagnant air
+- **Hypothesis 7:** O₃ AQI levels are higher in summer months due to increased sunlight and heat
 
 ## Validation 
 - **Validation 1:** Analyze the correlation between temperature and key pollutants (O₃, PM2.5, NO₂, CO) using statistical and machine learning models (e.g., linear regression, decision trees) to predict pollution levels.
 - **Validation 2:** Segment data by location type (urban vs. rural) and analyze pollution patterns using descriptive statistics, visualizations (e.g., box plots, heatmaps), and clustering techniques (e.g., K-means).
 - **Validation 3:** Analyze the relationship between wind speed, humidity, and pollution levels using correlation analysis, time-series methods for seasonal trends, and regression models to quantify their impact.
+- **Validation 4:** Conduct a trend analysis using line plots and regression. Perform a t-test comparing pre- and post-regulation AQI levels.
+- **Validation 5:** Correlate AQI levels with the number of coal power plants per state using scatter plots and correlation analysis.
+- **Validation 6:** Perform a seasonal analysis of AQI data using monthly averages and t-tests comparing winter and non-winter months.
+- **Validation 7:** Conduct a seasonal analysis and correlate O₃ levels with temperature data using regression analysis.
 
 ---
 ## Modeling Plan for Air Quality Prediction:
@@ -120,6 +128,7 @@ This project explores pollution levels across The United Stes from 2000-2016, an
 - Filters for specific regions and time periods. 
 - Predictive insights on pollution levels.
 
+
 ## Deployment
 ### Heroku
 - **Platform:** Streamlit
@@ -145,9 +154,12 @@ This project explores pollution levels across The United Stes from 2000-2016, an
 ## Credits and Acknowledgments 
  - **Dataset:** [Kaggle - US Pollution Dataset](https://www.kaggle.com/datasets/sogun3/uspollution)
 - **Weather Data:** [NCEI - Global Historical Climatology Network](https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_year/)
-- **Contributors:** *[To be updated]*
+- **Contributors:** Paul G, Tamika, Hasnain S, Thinley
 
 
 ## Conclusion 
-This project provides valuable insights into pollution trends and their relationships with weather conditions. The findings can assist in environmental policymaking and awareness campaigns. 
-(MORE TO BE ADDED AS ANALYSIS PROGRESSES)
+This project provides valuable insights into pollution trends and their relationships with weather conditions. The findings can assist in environmental policymaking and awareness campaigns. Our findings confirm that air quality has improved over time, with CO, SO₂, NO₂, and O₃ levels declining significantly between 2003 and 2013, likely due to stricter environmental regulations. Urban areas and states with higher industrial activity, especially those with more coal power plants, consistently show higher pollution levels.
+
+Seasonal patterns reveal that CO and NO₂ levels spike in winter due to heating and stagnant air, while O₃ levels increase in summer, driven by higher temperatures and sunlight. Weather conditions play a crucial role in pollution dispersion, with wind speed helping to reduce pollutant concentrations and humidity sometimes trapping them closer to the surface. Additionally, machine learning models successfully predict AQI levels based on weather data, offering potential for real-time forecasting.
+
+These insights highlight the need for continued policy efforts, public awareness, and technological advancements in air quality monitoring. Future work could integrate real-time pollution data, expand pollutant analysis, and enhance predictive models for more accurate forecasting and decision-making.
