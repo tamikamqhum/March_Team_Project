@@ -10,7 +10,7 @@ def correllation_body2():
     st.title("🌍 AQI vs Weather Conditions: More Correlation Overview")
     @st.cache_data
     def load_data():
-        return pd.read_csv("Outputs\DashBoardData.zip", parse_dates=["Date"])
+        return pd.read_csv("Outputs//DashBoardData.zip", parse_dates=["Date"])
 
     df = load_data()
 
